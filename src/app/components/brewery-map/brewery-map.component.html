@@ -1,0 +1,9 @@
+<div class="container">
+  <div id="action-menu" *ngIf="showActions">
+    <button mat-raised-button (click)="AddToFavorites()">Ajouter aux favoris</button>
+    <button mat-raised-button (click)="removeFromFavorites()">Retirer des favoris</button>
+    <button mat-raised-button (click)="remove()">Supprimer</button>
+  </div>
+  <div class="map-container" leaflet [leafletOptions]="options" (leafletMapReady)="onMapReady($event)"
+    (leafletMapZoomEnd)="onMapZoomEnd($event)"></div>
+</div>
