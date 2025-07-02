@@ -119,6 +119,7 @@
   },
   "cli": {
     "schematicCollections": [
+      "@schematics/angular",
       "angular-eslint"
     ]
   }

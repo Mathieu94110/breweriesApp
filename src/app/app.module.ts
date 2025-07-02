@@ -9,20 +9,27 @@ import { MatMenuModule } from '@angular/material/menu';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { AppComponent } from './app.component';
 import { BreweryMapComponent } from './components/brewery-map/brewery-map.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 import { HomeComponent } from './pages/home/home.component';
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot([{ path: '', component: BreweryMapComponent }]),
+    RouterModule.forRoot([{ path: '', component: HomeComponent }]),
     MatButtonModule,
     MatInputModule,
     MatMenuModule,
     LeafletModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    HttpClientModule,
   ],
-  declarations: [AppComponent, BreweryMapComponent, HomeComponent],
+  declarations: [AppComponent, BreweryMapComponent, HomeComponent, SearchComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

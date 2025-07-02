@@ -1,0 +1,33 @@
+<div class="search-container">
+  <h1 class="title-primary">Rechercher une brasserie</h1>
+  <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+
+    <mat-form-field appearance="outline" color="primary" class="full-width">
+      <mat-label>Nom ou ID</mat-label>
+      <input matInput type="text" formControlName="searchTerm" placeholder="Nom ou ID" />
+      <mat-error *ngIf="searchForm.get('searchTerm')?.invalid && searchForm.get('searchTerm')?.touched">
+        Entrée invalide : uniquement lettres et chiffres.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Select</mat-label>
+      <mat-select>
+        <mat-option value="one">First option</mat-option>
+        <mat-option value="two">Second option</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" color="primary" class="full-width">
+      <mat-label>Pays</mat-label>
+      <input matInput type="text" formControlName="country" placeholder="Pays" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" color="primary" class="full-width">
+      <mat-label>Ville</mat-label>
+      <input matInput type="text" formControlName="city" placeholder="Ville" />
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" class="full-width">Rechercher</button>
+  </form>
+</div>
