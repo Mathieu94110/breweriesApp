@@ -13,6 +13,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { HomeComponent } from './pages/home/home.component';
 import { SearchComponent } from './components/search/search.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
@@ -30,7 +31,7 @@ import { AppRoutingModule } from './app-routing.module';
     HttpClientModule,
     AppRoutingModule
   ],
-  declarations: [AppComponent, BreweryMapComponent, HomeComponent, SearchComponent],
+  declarations: [AppComponent, BreweryMapComponent, HomeComponent, SearchComponent, PageNotFoundComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

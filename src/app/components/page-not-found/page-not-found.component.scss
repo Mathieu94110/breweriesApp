@@ -1,0 +1,44 @@
+.not-found-container {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+
+  h1 {
+    font-size: 8rem;
+    font-weight: 900;
+    color: var(--color-primary);
+    margin: 0;
+  }
+
+  p {
+    font-size: 1.5rem;
+    margin: 1rem 0 2rem 0;
+    color: #666;
+  }
+
+  button {
+    background-color: var(--color-primary);
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: var(--color-dark-primary);
+    }
+  }
+
+}
+
+@media (max-width: 600px) {
+  .not-found-container {
+    h1 {
+      font-size: 4rem;
+    }
+
+    p {
+      font-size: 1.1rem;
+    }
+  }
+}
