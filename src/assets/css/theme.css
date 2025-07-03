@@ -130,9 +130,9 @@
   background: rgba(255, 255, 255, .08)
 }
 
-.mat-primary .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) .mdc-list-item__primary-text {
+/* .mat-primary .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) .mdc-list-item__primary-text {
   color: var(--mdc-theme-primary, #9c27b0)
-}
+} */
 
 .mat-accent .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) .mdc-list-item__primary-text {
   color: var(--mdc-theme-secondary, #69f0ae)

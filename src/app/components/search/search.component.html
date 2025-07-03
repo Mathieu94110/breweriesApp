@@ -4,28 +4,30 @@
 
     <mat-form-field appearance="outline" color="primary" class="full-width">
       <mat-label>Nom ou ID</mat-label>
-      <input matInput type="text" formControlName="searchTerm" placeholder="Nom ou ID" />
-      <mat-error *ngIf="searchForm.get('searchTerm')?.invalid && searchForm.get('searchTerm')?.touched">
+      <input matInput type="text" formControlName="searchTerm" />
+      <mat-error
+        *ngIf="searchForm.get('searchTerm')?.value?.length > 0 && searchForm.get('searchTerm')?.invalid && searchForm.get('searchTerm')?.touched">
         Entrée invalide : uniquement lettres et chiffres.
       </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Select</mat-label>
+      <mat-label>Favorite food</mat-label>
       <mat-select>
-        <mat-option value="one">First option</mat-option>
-        <mat-option value="two">Second option</mat-option>
+        <mat-option *ngFor="let food of foods" [value]="food.value">
+          {{food.viewValue}}
+        </mat-option>
       </mat-select>
     </mat-form-field>
 
     <mat-form-field appearance="outline" color="primary" class="full-width">
       <mat-label>Pays</mat-label>
-      <input matInput type="text" formControlName="country" placeholder="Pays" />
+      <input matInput type="text" formControlName="country" />
     </mat-form-field>
 
     <mat-form-field appearance="outline" color="primary" class="full-width">
       <mat-label>Ville</mat-label>
-      <input matInput type="text" formControlName="city" placeholder="Ville" />
+      <input matInput type="text" formControlName="city" />
     </mat-form-field>
 
     <button mat-raised-button color="primary" type="submit" class="full-width">Rechercher</button>

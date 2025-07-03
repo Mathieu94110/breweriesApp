@@ -2,20 +2,6 @@
   height: 420px;
 }
 
-div#action-menu {
-  position: absolute;
-  display: flex;
-  gap: 0.2em;
-  flex-direction: column;
-  top: 25px;
-  right: 25px;
-  z-index: 9999;
-  background-color: transparent;
-}
-
-.container {
-  position: relative;
-}
 
 .tip {
   font-size: 12px;

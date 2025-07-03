@@ -1,5 +1,8 @@
 :root {
   --color-primary: #9c27b0;
+  --color-dark-primary: #7a1a88;
+  --color-black: #000;
+  --color-white: #fff;
 }
 
 html,
@@ -17,7 +20,7 @@ body {
 }
 
 .my-app-background {
-  color: #fff;
+  color: var(--color-primary)
 }
 
 .full-width {

@@ -7,21 +7,22 @@
   background: #fafafa;
 }
 
-h1 {
+.title-primary {
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+  text-align: center;
   text-align: center;
   font-size: 1.5rem;
   margin-bottom: 1rem;
 }
 
-.title-primary {
-  color: var(--color-primary);
-  margin-bottom: 1rem;
-  text-align: center;
+
+mat-label {
+  color: var(--color-primary) !important;
 }
 
 mat-form-field {
   width: 100%;
-
   /* unfocus */
   --mdc-text-field-outlined-idle-border-color: var(--color-primary);
 
@@ -63,7 +64,25 @@ mat-form-field {
   border-color: var(--color-primary) !important;
 }
 
-// label
-mat-label {
-  color: var(--color-primary) !important;
+::ng-deep .mat-mdc-select {
+  color: var(--color-black) !important;
+}
+
+// to fix selector panel ui issue
+::ng-deep div.mat-mdc-select-panel {
+  margin-left: 3rem !important;
+}
+
+::ng-deep .mdc-text-field__input {
+  color: var(--color-black) !important;
+}
+
+::ng-deep .mat-mdc-select-arrow svg {
+  fill: var(--color-primary) !important;
+}
+
+@media (max-width: 600px) {
+  .title-primary {
+    font-size: 1.2rem;
+  }
 }

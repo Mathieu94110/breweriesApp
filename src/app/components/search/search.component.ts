@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { debounceTime, filter, distinctUntilChanged } from 'rxjs/operators';
 
+interface Food {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -11,14 +16,18 @@ export class SearchComponent implements OnInit {
   searchForm!: FormGroup;
 
   constructor(private fb: FormBuilder) { }
-
+  foods: Food[] = [
+    { value: 'steak-0', viewValue: 'Steak' },
+    { value: 'pizza-1', viewValue: 'Pizza' },
+    { value: 'tacos-2', viewValue: 'Tacos' },
+  ];
   ngOnInit(): void {
     this.searchForm = this.fb.group({
       searchTerm: [
         '',
         [
           Validators.required,
-          Validators.pattern(/^[a-zA-Z0-9\s]+$/) // autorise lettres, chiffres, espaces
+          Validators.pattern(/^[a-zA-Z0-9\s]+$/) // authorize letters numbers and spaces
         ]
       ],
       searchBy: ['name'],
@@ -27,11 +36,11 @@ export class SearchComponent implements OnInit {
     });
 
     this.searchForm.get('searchTerm')!.valueChanges.pipe(
-      debounceTime(300), // attendre 300ms après la frappe
+      debounceTime(300),
       distinctUntilChanged(),
       filter(() => this.searchForm.get('searchTerm')!.valid)
     ).subscribe(value => {
-      this.launchSearch(); // méthode de recherche automatique
+      this.launchSearch();
     });
   }
 
