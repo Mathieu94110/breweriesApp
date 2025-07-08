@@ -1,9 +1,14 @@
 .map-container {
-  height: 420px;
+  height: 300px;
 }
-
 
 .tip {
   font-size: 12px;
   margin-top: 0.5em;
+}
+
+@media (max-width: 600px) {
+  .map-container {
+    height: 250px;
+  }
 }

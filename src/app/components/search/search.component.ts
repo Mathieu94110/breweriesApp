@@ -14,14 +14,16 @@ interface Food {
 })
 export class SearchComponent implements OnInit {
   searchForm!: FormGroup;
-
+  breakpoint: number | undefined;
   constructor(private fb: FormBuilder) { }
   foods: Food[] = [
     { value: 'steak-0', viewValue: 'Steak' },
     { value: 'pizza-1', viewValue: 'Pizza' },
     { value: 'tacos-2', viewValue: 'Tacos' },
   ];
+
   ngOnInit(): void {
+    this.breakpoint = window.innerWidth <= 768 ? 1 : 2;
     this.searchForm = this.fb.group({
       searchTerm: [
         '',
@@ -32,7 +34,8 @@ export class SearchComponent implements OnInit {
       ],
       searchBy: ['name'],
       country: [''],
-      city: ['']
+      city: [''],
+      food: ['']
     });
 
     this.searchForm.get('searchTerm')!.valueChanges.pipe(
@@ -47,8 +50,6 @@ export class SearchComponent implements OnInit {
   launchSearch() {
     const { searchTerm, searchBy, country, city } = this.searchForm.value;
     console.log('Recherche déclenchée avec :', { searchTerm, searchBy, country, city });
-
-    // ici tu peux appeler un service ou filtrer une liste
   }
 
   onSubmit() {
@@ -56,4 +57,10 @@ export class SearchComponent implements OnInit {
       this.launchSearch();
     }
   }
+
+  onResize(event: Event): void {
+    const window = event.target as Window;
+    this.breakpoint = (window.innerWidth <= 768) ? 1 : 2;
+  }
+
 }

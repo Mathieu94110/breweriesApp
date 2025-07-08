@@ -1,35 +1,38 @@
 <div class="search-container">
-  <h1 class="title-primary">Rechercher une brasserie</h1>
   <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
-
-    <mat-form-field appearance="outline" color="primary" class="full-width">
-      <mat-label>Nom ou ID</mat-label>
-      <input matInput type="text" formControlName="searchTerm" />
-      <mat-error
-        *ngIf="searchForm.get('searchTerm')?.value?.length > 0 && searchForm.get('searchTerm')?.invalid && searchForm.get('searchTerm')?.touched">
-        Entrée invalide : uniquement lettres et chiffres.
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field>
-      <mat-label>Favorite food</mat-label>
-      <mat-select>
-        <mat-option *ngFor="let food of foods" [value]="food.value">
-          {{food.viewValue}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <mat-form-field appearance="outline" color="primary" class="full-width">
-      <mat-label>Pays</mat-label>
-      <input matInput type="text" formControlName="country" />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline" color="primary" class="full-width">
-      <mat-label>Ville</mat-label>
-      <input matInput type="text" formControlName="city" />
-    </mat-form-field>
-
-    <button mat-raised-button color="primary" type="submit" class="full-width">Rechercher</button>
+    <mat-grid-list [cols]="breakpoint" gutterSize="1rem" rowHeight="100px" (window:resize)="onResize($event)">
+      <mat-grid-tile>
+        <mat-form-field appearance="outline" color="primary">
+          <mat-label>Nom ou ID</mat-label>
+          <input matInput type="text" formControlName="searchTerm" />
+          <mat-error *ngIf="searchForm.get('searchTerm')?.invalid && searchForm.get('searchTerm')?.touched">
+            Uniquement lettres et chiffres.
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field appearance="outline" color="primary">
+          <mat-label>Favorite food</mat-label>
+          <mat-select formControlName="food">
+            <mat-option *ngFor="let food of foods" [value]="food.value">
+              {{ food.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field appearance="outline" color="primary">
+          <mat-label>Pays</mat-label>
+          <input matInput type="text" formControlName="country" />
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field appearance="outline" color="primary">
+          <mat-label>Ville</mat-label>
+          <input matInput type="text" formControlName="city" />
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <button mat-raised-button color="primary" type="submit">Rechercher</button>
   </form>
 </div>

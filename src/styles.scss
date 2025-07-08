@@ -1,5 +1,7 @@
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
 :root {
-  --color-primary: #9c27b0;
+  --color-primary: #673ab7;
   --color-dark-primary: #7a1a88;
   --color-black: #000;
   --color-white: #fff;
@@ -17,10 +19,6 @@ body {
 
 .padding-1em {
   padding: 1em;
-}
-
-.my-app-background {
-  color: var(--color-primary)
 }
 
 .full-width {

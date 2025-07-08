@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { BreweryMapComponent } from './components/brewery-map/brewery-map.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSelectModule } from '@angular/material/select';
 import { HomeComponent } from './pages/home/home.component';
 import { SearchComponent } from './components/search/search.component';
@@ -25,6 +26,7 @@ import { AppRoutingModule } from './app-routing.module';
     MatButtonModule,
     MatInputModule,
     MatMenuModule,
+    MatGridListModule,
     LeafletModule,
     MatFormFieldModule,
     MatSelectModule,
