@@ -1,9 +1,14 @@
 section {
-  padding: 0px 2rem 1rem;
   height: 100%;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+
+  .search-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-grow: 1;
+    height: 100%;
+  }
 
   .header {
     padding: 1rem;
@@ -11,6 +16,7 @@ section {
     justify-content: space-between;
     align-items: center;
     position: relative;
+    flex-shrink: 0;
 
     &>h1 {
       margin: 0;
@@ -26,11 +32,25 @@ section {
       left: 0;
     }
   }
+
+  .flex-grow {
+    flex: 1;
+  }
+
+
+  app-brewery-map,
+  app-search {
+    flex-grow: 1;
+    height: 100%;
+  }
 }
 
-
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   section {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+
     .header {
       &>h1 {
         font-size: 1rem;

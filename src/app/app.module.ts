@@ -12,10 +12,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSelectModule } from '@angular/material/select';
+import { MatCardModule } from '@angular/material/card';
 import { HomeComponent } from './pages/home/home.component';
 import { SearchComponent } from './components/search/search.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { AppRoutingModule } from './app-routing.module';
+import { BreweryResultsComponent } from './components/brewery-results/brewery-results.component';
 
 @NgModule({
   imports: [
@@ -30,10 +32,11 @@ import { AppRoutingModule } from './app-routing.module';
     LeafletModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatCardModule,
     HttpClientModule,
     AppRoutingModule
   ],
-  declarations: [AppComponent, BreweryMapComponent, HomeComponent, SearchComponent, PageNotFoundComponent],
+  declarations: [AppComponent, BreweryMapComponent, HomeComponent, SearchComponent, PageNotFoundComponent, BreweryResultsComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

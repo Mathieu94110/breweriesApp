@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { debounceTime, filter, distinctUntilChanged } from 'rxjs/operators';
+import { Brewery } from 'src/app/models/brewery-model';
+import { BreweryService } from 'src/services/brewery.service';
 
 interface Food {
   value: string;
@@ -13,14 +15,18 @@ interface Food {
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
+
+  constructor(private fb: FormBuilder, private breweryService: BreweryService) { }
+
   searchForm!: FormGroup;
   breakpoint: number | undefined;
-  constructor(private fb: FormBuilder) { }
   foods: Food[] = [
     { value: 'steak-0', viewValue: 'Steak' },
     { value: 'pizza-1', viewValue: 'Pizza' },
     { value: 'tacos-2', viewValue: 'Tacos' },
   ];
+
+  @Output() setDisplayedResultsEvent = new EventEmitter<Brewery[]>();
 
   ngOnInit(): void {
     this.breakpoint = window.innerWidth <= 768 ? 1 : 2;
@@ -50,6 +56,10 @@ export class SearchComponent implements OnInit {
   launchSearch() {
     const { searchTerm, searchBy, country, city } = this.searchForm.value;
     console.log('Recherche déclenchée avec :', { searchTerm, searchBy, country, city });
+    this.breweryService.getSearchedBreweries(searchTerm).subscribe((result: Brewery[]) => {
+      this.setDisplayedResultsEvent.emit(result)
+      console.log(result)
+    })
   }
 
   onSubmit() {

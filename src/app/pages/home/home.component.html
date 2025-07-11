@@ -1,8 +1,13 @@
-<section>
-  <div class="header">
-    <button mat-raised-button color="primary" (click)="clearAll()">Tout supprimer</button>
-    <h1>Rechercher une brasserie</h1>
+<section [ngStyle]="{'padding': results.length > 0 ? '1rem' : '1rem 2rem' }">
+  <div class="search-container">
+    <div class="header">
+      <button mat-raised-button color="primary" (click)="clearAll()">Tout supprimer</button>
+      <h1>Rechercher une brasserie</h1>
+    </div>
+    <app-brewery-map #osmMap></app-brewery-map>
+    <app-search (setDisplayedResultsEvent)="setDisplayedResults($event)"></app-search>
   </div>
-  <app-brewery-map #osmMap></app-brewery-map>
-  <app-search></app-search>
+  <div [ngClass]="{ 'flex-grow': results.length > 0 }">
+    <app-brewery-results [searchedResults]="results"></app-brewery-results>
+  </div>
 </section>

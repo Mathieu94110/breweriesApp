@@ -7,14 +7,30 @@
   --color-white: #fff;
 }
 
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+html {
+  box-sizing: border-box;
+}
+
 html,
 body {
   height: 100%;
 }
 
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+ul {
+  margin: 0px;
+  padding: 0px;
 }
 
 .padding-1em {

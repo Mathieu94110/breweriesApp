@@ -25,7 +25,8 @@ export class BreweryService {
   }
 
   getSearchedBreweries(search: string): Observable<Brewery[]> {
-    return this.http.get<Brewery[]>(`${this.baseUrl}/breweries/search?query=${search}`);
+    return this.http.get<Brewery[]>(`${this.baseUrl}/search?query=${search}
+`);
   }
 
   getBreweriesMetaData(): Observable<BreweryMetadata> {
