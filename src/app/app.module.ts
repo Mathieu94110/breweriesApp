@@ -18,6 +18,7 @@ import { SearchComponent } from './components/search/search.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BreweryResultsComponent } from './components/brewery-results/brewery-results.component';
+import { BreweryCardComponent } from './components/brewery-results/brewery-card/brewery-card.component';
 
 @NgModule({
   imports: [
@@ -36,7 +37,7 @@ import { BreweryResultsComponent } from './components/brewery-results/brewery-re
     HttpClientModule,
     AppRoutingModule
   ],
-  declarations: [AppComponent, BreweryMapComponent, HomeComponent, SearchComponent, PageNotFoundComponent, BreweryResultsComponent],
+  declarations: [AppComponent, BreweryMapComponent, HomeComponent, SearchComponent, PageNotFoundComponent, BreweryResultsComponent, BreweryCardComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

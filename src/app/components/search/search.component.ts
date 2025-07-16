@@ -55,10 +55,8 @@ export class SearchComponent implements OnInit {
 
   launchSearch() {
     const { searchTerm, searchBy, country, city } = this.searchForm.value;
-    console.log('Recherche déclenchée avec :', { searchTerm, searchBy, country, city });
     this.breweryService.getSearchedBreweries(searchTerm).subscribe((result: Brewery[]) => {
       this.setDisplayedResultsEvent.emit(result)
-      console.log(result)
     })
   }
 

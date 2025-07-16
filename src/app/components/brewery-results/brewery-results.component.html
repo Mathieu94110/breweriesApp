@@ -4,19 +4,8 @@
   </header>
   <div class="brewery-results-container">
     <ng-container *ngFor="let result of searchedResults">
-      <mat-card>
-        <mat-card-header>
-          <mat-card-title-group>
-            <mat-card-title>{{result.name}}</mat-card-title>
-            <mat-card-subtitle>{{result.country}} {{result.state}}</mat-card-subtitle>
-          </mat-card-title-group>
-        </mat-card-header>
-        <mat-card-content>
-          <p>{{result.postal_code}}</p>
-          <p>{{result.phone}}</p>
-          <p>{{result.website_url || 'Aucune donnée'}}</p>
-        </mat-card-content>
-      </mat-card>
+      <app-brewery-card [breweryInfo]="result" (click)="selectBrewery(result)"
+        [isSelected]="selectedBrewery === result"></app-brewery-card>
     </ng-container>
   </div>
 </section>

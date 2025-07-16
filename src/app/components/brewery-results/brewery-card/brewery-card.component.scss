@@ -1,0 +1,32 @@
+mat-card {
+  transition: all 0.3s ease-in-out;
+}
+
+mat-card.selected {
+  border: 2px solid var(--color-primary);
+  transform: scale(0.95);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+mat-card.selected .mat-mdc-card-header,
+mat-card.selected .mat-mdc-card-content,
+mat-card.selected .mat-mdc-card-subtitle {
+  background-color: var(--color-primary) !important;
+  color: var(--color-white) !important;
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+}
+
+p {
+  margin: 0 0 4px !important;
+}
+
+;
+
+mat-card.selected .mat-mdc-card-header {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+mat-card.selected .mat-mdc-card-subtitle {
+  transform: none;
+}

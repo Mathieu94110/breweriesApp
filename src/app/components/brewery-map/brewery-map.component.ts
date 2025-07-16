@@ -2,9 +2,11 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnChanges,
   OnDestroy,
   OnInit,
   Output,
+  SimpleChanges,
 } from '@angular/core';
 
 import {
@@ -21,16 +23,18 @@ import {
   MarkerOptions,
   Marker,
 } from 'leaflet';
+import { Brewery } from 'src/app/models/brewery-model';
 
 @Component({
   selector: 'app-brewery-map',
   templateUrl: './brewery-map.component.html',
   styleUrls: ['./brewery-map.component.scss'],
 })
-export class BreweryMapComponent implements OnInit, OnDestroy {
+export class BreweryMapComponent implements OnInit, OnChanges, OnDestroy {
   showActions = false;
   mouseX: number = 0;
   mouseY: number = 0;
+  @Input() selectedBrewery: Brewery | null = null;
   @Output() map$: EventEmitter<Map> = new EventEmitter();
   @Output() zoom$: EventEmitter<number> = new EventEmitter();
   @Input() options: MapOptions = {
@@ -75,12 +79,20 @@ export class BreweryMapComponent implements OnInit, OnDestroy {
       this.mouseX = e.pageX;
       this.mouseY = e.pageY;
     });
-    /*
-    window.addEventListener('resize', (e) => {
-      0;
-      console.log('resize');
-      this.trigger!.closeMenu();
-    });*/
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['selectedBrewery'] && this.selectedBrewery) {
+      this.updateMapWithSelectedBrewery();
+    }
+  }
+
+  private updateMapWithSelectedBrewery() {
+    if (this.selectedBrewery && this.map) {
+      const { latitude, longitude } = this.selectedBrewery;
+      this.map.panTo(new LatLng(latitude, longitude));
+      this.addMarker(latitude, longitude, { icon: this.markerIconRed });
+    }
   }
 
   ngOnDestroy() {
@@ -116,15 +128,7 @@ export class BreweryMapComponent implements OnInit, OnDestroy {
     const newMarker = marker([lat, lng], markerIcon)
       .on('click', (e) => {
         this.showActions = false;
-        //this.trigger!.closeMenu();
-        let circle = document.getElementById('circle');
-        /*
-        if (circle && this.mouseX > 5 && this.mouseY > 5) {
-          circle.style.left = this.mouseX + 'px';
-          circle.style.top = this.mouseY + 'px';
-        }*/
         this.menuMarker = e.target;
-        //this.trigger!.openMenu();
         this.showActions = true;
         if (!this.map) {
           return;

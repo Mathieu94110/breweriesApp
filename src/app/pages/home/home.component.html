@@ -4,10 +4,10 @@
       <button mat-raised-button color="primary" (click)="clearAll()">Tout supprimer</button>
       <h1>Rechercher une brasserie</h1>
     </div>
-    <app-brewery-map #osmMap></app-brewery-map>
+    <app-brewery-map #osmMap [selectedBrewery]="selectedBrewery$ | async"></app-brewery-map>
     <app-search (setDisplayedResultsEvent)="setDisplayedResults($event)"></app-search>
   </div>
   <div [ngClass]="{ 'flex-grow': results.length > 0 }">
-    <app-brewery-results [searchedResults]="results"></app-brewery-results>
+    <app-brewery-results [searchedResults]="results" [selectedBrewery]="selectedBrewery$ | async"></app-brewery-results>
   </div>
 </section>

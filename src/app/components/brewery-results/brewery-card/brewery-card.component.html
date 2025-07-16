@@ -1,0 +1,13 @@
+<mat-card [ngClass]="{'selected': isSelected}">
+  <mat-card-header>
+    <mat-card-title-group>
+      <mat-card-title>{{breweryInfo?.name}}</mat-card-title>
+      <mat-card-subtitle>{{breweryInfo?.country}} {{breweryInfo?.state}}</mat-card-subtitle>
+    </mat-card-title-group>
+  </mat-card-header>
+  <mat-card-content>
+    <p>{{breweryInfo?.postal_code}}</p>
+    <p>{{breweryInfo?.phone}}</p>
+    <p>{{breweryInfo?.website_url || 'Aucune donnée'}}</p>
+  </mat-card-content>
+</mat-card>

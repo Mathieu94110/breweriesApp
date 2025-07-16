@@ -34,11 +34,6 @@ header {
   }
 }
 
-.mat-mdc-card-header,
-.mat-mdc-card-content {
-  padding: 8px 8px 0;
-}
-
-.mat-mdc-card-content p {
-  margin-bottom: 2px;
+app-brewery-card:hover {
+  cursor: pointer;
 }
