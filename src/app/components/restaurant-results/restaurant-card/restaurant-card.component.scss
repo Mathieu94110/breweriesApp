@@ -30,3 +30,13 @@ mat-card.selected .mat-mdc-card-header {
 mat-card.selected .mat-mdc-card-subtitle {
   transform: none;
 }
+
+.closed {
+  font-weight: 600;
+  color: var(--color-danger);
+}
+
+.open {
+  font-weight: 600;
+  color: var(--color-success);
+}

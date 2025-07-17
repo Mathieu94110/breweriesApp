@@ -1,0 +1,17 @@
+<mat-card [ngClass]="{'selected': isSelected}">
+  <mat-card-header>
+    <mat-card-title-group>
+      <mat-card-title>{{restaurantInfo?.name}}</mat-card-title>
+      <mat-card-subtitle>{{restaurantInfo?.location_string}} {{restaurantInfo?.timezone}}</mat-card-subtitle>
+    </mat-card-title-group>
+  </mat-card-header>
+  <mat-card-content>
+    <a *ngIf="restaurantInfo?.web_url; else noUrl" [href]="restaurantInfo?.web_url" target="_blank">
+      Site web
+    </a>
+    <ng-template #noUrl>
+      Aucune donnée
+    </ng-template>
+    <p [ngClass]="restaurantInfo?.is_closed ? 'closed' : 'open'">{{restaurantInfo?.is_closed ? 'Ouvert': 'Fermé'}}</p>
+  </mat-card-content>
+</mat-card>

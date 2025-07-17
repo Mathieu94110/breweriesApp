@@ -7,7 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { AppComponent } from './app.component';
-import { BreweryMapComponent } from './components/brewery-map/brewery-map.component';
+import { RestaurantMapComponent } from './components/restaurant-map/restaurant-map.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -17,8 +17,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { SearchComponent } from './components/search/search.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { AppRoutingModule } from './app-routing.module';
-import { BreweryResultsComponent } from './components/brewery-results/brewery-results.component';
-import { BreweryCardComponent } from './components/brewery-results/brewery-card/brewery-card.component';
+import { RestaurantResultsComponent } from './components/restaurant-results/restaurant-results.component';
+import { RestaurantCardComponent } from './components/restaurant-results/restaurant-card/restaurant-card.component';
 
 @NgModule({
   imports: [
@@ -37,7 +37,7 @@ import { BreweryCardComponent } from './components/brewery-results/brewery-card/
     HttpClientModule,
     AppRoutingModule
   ],
-  declarations: [AppComponent, BreweryMapComponent, HomeComponent, SearchComponent, PageNotFoundComponent, BreweryResultsComponent, BreweryCardComponent],
+  declarations: [AppComponent, RestaurantMapComponent, HomeComponent, SearchComponent, PageNotFoundComponent, RestaurantResultsComponent, RestaurantCardComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

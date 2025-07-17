@@ -23,18 +23,18 @@ import {
   MarkerOptions,
   Marker,
 } from 'leaflet';
-import { Brewery } from 'src/app/models/brewery-model';
+import { RestaurantResult } from 'src/app/models/world-wild-restaurant-model';
 
 @Component({
-  selector: 'app-brewery-map',
-  templateUrl: './brewery-map.component.html',
-  styleUrls: ['./brewery-map.component.scss'],
+  selector: 'app-restaurant-map',
+  templateUrl: './restaurant-map.component.html',
+  styleUrls: ['./restaurant-map.component.scss'],
 })
-export class BreweryMapComponent implements OnInit, OnChanges, OnDestroy {
+export class RestaurantMapComponent implements OnInit, OnChanges, OnDestroy {
   showActions = false;
   mouseX: number = 0;
   mouseY: number = 0;
-  @Input() selectedBrewery: Brewery | null = null;
+  @Input() selectedRestaurant: RestaurantResult | null = null;
   @Output() map$: EventEmitter<Map> = new EventEmitter();
   @Output() zoom$: EventEmitter<number> = new EventEmitter();
   @Input() options: MapOptions = {
@@ -82,16 +82,19 @@ export class BreweryMapComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['selectedBrewery'] && this.selectedBrewery) {
-      this.updateMapWithSelectedBrewery();
+    if (changes['selectedRestaurant'] && this.selectedRestaurant) {
+      this.updateMapWithSelectedRestaurant();
     }
   }
 
-  private updateMapWithSelectedBrewery() {
-    if (this.selectedBrewery && this.map) {
-      const { latitude, longitude } = this.selectedBrewery;
-      this.map.panTo(new LatLng(latitude, longitude));
-      this.addMarker(latitude, longitude, { icon: this.markerIconRed });
+  private updateMapWithSelectedRestaurant() {
+    if (this.selectedRestaurant && this.map) {
+      const { latitude, longitude } = this.selectedRestaurant;
+      const latNum = Number(latitude);
+      const lngNum = Number(longitude);
+
+      this.map.panTo(new LatLng(latNum, lngNum));
+      this.addMarker(latNum, lngNum, { icon: this.markerIconRed });
     }
   }
 

@@ -1,22 +1,22 @@
 import { Component, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
-import { BreweryMapComponent } from 'src/app/components/brewery-map/brewery-map.component';
-import { Brewery } from 'src/app/models/brewery-model';
-import { BreweryService } from 'src/services/brewery.service';
+import { RestaurantMapComponent } from 'src/app/components/restaurant-map/restaurant-map.component';
+import { RestaurantResult, RestaurantsResponse } from 'src/app/models/world-wild-restaurant-model';
+import { WorldWideRestaurantService } from 'src/services/worldwide-restaurant.service';
 
 @Component({
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-  constructor(private readonly breweryService: BreweryService) { }
-  @ViewChild(BreweryMapComponent) osmMap: BreweryMapComponent | undefined;
-  protected results: Brewery[] = [];
-  protected readonly selectedBrewery$: Observable<Brewery | null> =
-    this.breweryService.selectedBrewery$
+  constructor(private readonly restaurantService: WorldWideRestaurantService) { }
+  @ViewChild(RestaurantMapComponent) osmMap: RestaurantMapComponent | undefined;
+  protected results: RestaurantResult[] = [];
+  protected readonly selectedRestaurant$: Observable<RestaurantResult | null> =
+    this.restaurantService.selectedRestaurant$
 
-  setDisplayedResults(results: Brewery[]) {
-    this.results = results
+  setDisplayedResults(results: RestaurantsResponse) {
+    this.results = results.results.data
   }
 
   clearAll() {

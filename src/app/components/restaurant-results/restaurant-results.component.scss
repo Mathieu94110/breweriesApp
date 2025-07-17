@@ -1,4 +1,4 @@
-.brewery-results {
+.restaurant-results {
   height: 100%;
   color: var(--color-primary);
   margin-left: 20px;
@@ -7,7 +7,7 @@
   align-items: center;
 }
 
-.brewery-results-container {
+.restaurant-results-container {
   display: flex;
   flex-direction: column;
   border: 1px solid var(--color-primary);
@@ -34,6 +34,6 @@ header {
   }
 }
 
-app-brewery-card:hover {
+app-restaurant-card:hover {
   cursor: pointer;
 }

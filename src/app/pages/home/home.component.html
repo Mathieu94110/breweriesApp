@@ -2,12 +2,13 @@
   <div class="search-container">
     <div class="header">
       <button mat-raised-button color="primary" (click)="clearAll()">Tout supprimer</button>
-      <h1>Rechercher une brasserie</h1>
+      <h1>Rechercher un restaurant</h1>
     </div>
-    <app-brewery-map #osmMap [selectedBrewery]="selectedBrewery$ | async"></app-brewery-map>
+    <app-restaurant-map #osmMap [selectedRestaurant]="selectedRestaurant$ | async"></app-restaurant-map>
     <app-search (setDisplayedResultsEvent)="setDisplayedResults($event)"></app-search>
   </div>
   <div [ngClass]="{ 'flex-grow': results.length > 0 }">
-    <app-brewery-results [searchedResults]="results" [selectedBrewery]="selectedBrewery$ | async"></app-brewery-results>
+    <app-restaurant-results [searchedResults]="results"
+      [selectedRestaurant]="selectedRestaurant$ | async"></app-restaurant-results>
   </div>
 </section>

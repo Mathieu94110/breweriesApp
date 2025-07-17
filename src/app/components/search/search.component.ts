@@ -1,8 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { debounceTime, filter, distinctUntilChanged } from 'rxjs/operators';
-import { Brewery } from 'src/app/models/brewery-model';
-import { BreweryService } from 'src/services/brewery.service';
+import { RestaurantsResponse } from 'src/app/models/world-wild-restaurant-model';
+import { WorldWideRestaurantService } from 'src/services/worldwide-restaurant.service';
 
 interface Food {
   value: string;
@@ -16,7 +16,7 @@ interface Food {
 })
 export class SearchComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private breweryService: BreweryService) { }
+  constructor(private fb: FormBuilder, private restaurantService: WorldWideRestaurantService) { }
 
   searchForm!: FormGroup;
   breakpoint: number | undefined;
@@ -26,7 +26,7 @@ export class SearchComponent implements OnInit {
     { value: 'tacos-2', viewValue: 'Tacos' },
   ];
 
-  @Output() setDisplayedResultsEvent = new EventEmitter<Brewery[]>();
+  @Output() setDisplayedResultsEvent = new EventEmitter<RestaurantsResponse>();
 
   ngOnInit(): void {
     this.breakpoint = window.innerWidth <= 768 ? 1 : 2;
@@ -55,9 +55,15 @@ export class SearchComponent implements OnInit {
 
   launchSearch() {
     const { searchTerm, searchBy, country, city } = this.searchForm.value;
-    this.breweryService.getSearchedBreweries(searchTerm).subscribe((result: Brewery[]) => {
-      this.setDisplayedResultsEvent.emit(result)
-    })
+    this.restaurantService.getRestaurants(searchTerm)
+      .subscribe(
+        response => {
+          this.setDisplayedResultsEvent.emit(response)
+        },
+        error => {
+          console.error('Erreur lors de la recherche de restaurants : ', error);
+        }
+      );
   }
 
   onSubmit() {
@@ -70,5 +76,4 @@ export class SearchComponent implements OnInit {
     const window = event.target as Window;
     this.breakpoint = (window.innerWidth <= 768) ? 1 : 2;
   }
-
 }

@@ -1,0 +1,11 @@
+<section class="restaurant-results" *ngIf="searchedResults.length" aria-labelledby="searchResults">
+  <header class="header">
+    <h2>Résultats de recherche</h2>
+  </header>
+  <div class="restaurant-results-container">
+    <ng-container *ngFor="let result of searchedResults">
+      <app-restaurant-card [restaurantInfo]="result" (click)="selectRestaurant(result)"
+        [isSelected]="selectedRestaurant === result"></app-restaurant-card>
+    </ng-container>
+  </div>
+</section>
