@@ -35,7 +35,8 @@ import { RestaurantCardComponent } from './components/restaurant-results/restaur
     MatSelectModule,
     MatCardModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    LeafletModule
   ],
   declarations: [AppComponent, RestaurantMapComponent, HomeComponent, SearchComponent, PageNotFoundComponent, RestaurantResultsComponent, RestaurantCardComponent],
   bootstrap: [AppComponent],

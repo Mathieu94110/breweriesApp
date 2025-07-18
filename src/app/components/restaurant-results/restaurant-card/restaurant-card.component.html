@@ -12,6 +12,6 @@
     <ng-template #noUrl>
       Aucune donnée
     </ng-template>
-    <p [ngClass]="restaurantInfo?.is_closed ? 'closed' : 'open'">{{restaurantInfo?.is_closed ? 'Ouvert': 'Fermé'}}</p>
+    <p [ngClass]="restaurantInfo?.is_closed ? 'closed' : 'open'">{{restaurantInfo?.is_closed ? 'Fermé': 'Ouvert'}}</p>
   </mat-card-content>
 </mat-card>

@@ -56,7 +56,6 @@ export class RestaurantMapComponent implements OnInit, OnChanges, OnDestroy {
     iconSize: [25, 41],
     iconAnchor: [10, 41],
     popupAnchor: [2, -40],
-    // specify the path here
     iconUrl:
       'https://raw.githubusercontent.com/raulmu/assets/main/marker-icon-blue.png',
     shadowUrl: 'https://unpkg.com/leaflet@1.4.0/dist/images/marker-shadow.png',
@@ -65,7 +64,6 @@ export class RestaurantMapComponent implements OnInit, OnChanges, OnDestroy {
     iconSize: [25, 41],
     iconAnchor: [10, 41],
     popupAnchor: [2, -40],
-    // specify the path here
     iconUrl:
       'https://raw.githubusercontent.com/raulmu/assets/main/marker-icon-red.png',
     shadowUrl: 'https://unpkg.com/leaflet@1.4.0/dist/images/marker-shadow.png',
@@ -99,11 +97,9 @@ export class RestaurantMapComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (!this.map) {
-      return;
+    if (this.map) {
+      this.map?.off();
     }
-    this.map.clearAllEventListeners;
-    this.map.remove();
   }
 
   onMapReady(map: Map) {
