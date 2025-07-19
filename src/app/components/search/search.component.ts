@@ -25,6 +25,7 @@ export class SearchComponent implements OnInit {
     { value: 'pizza-1', viewValue: 'Pizza' },
     { value: 'tacos-2', viewValue: 'Tacos' },
   ];
+  isLoading: boolean = false;
 
   @Output() setDisplayedResultsEvent = new EventEmitter<RestaurantsResponse>();
 
@@ -53,15 +54,20 @@ export class SearchComponent implements OnInit {
     });
   }
 
+
   launchSearch() {
     const { searchTerm, searchBy, country, city } = this.searchForm.value;
+
+    this.isLoading = true;
     this.restaurantService.getRestaurants(searchTerm)
       .subscribe(
         response => {
-          this.setDisplayedResultsEvent.emit(response)
+          this.setDisplayedResultsEvent.emit(response);
+          this.isLoading = false;
         },
         error => {
           console.error('Erreur lors de la recherche de restaurants : ', error);
+          this.isLoading = false;
         }
       );
   }

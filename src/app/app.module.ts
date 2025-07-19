@@ -13,6 +13,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HomeComponent } from './pages/home/home.component';
 import { SearchComponent } from './components/search/search.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
@@ -36,7 +37,8 @@ import { RestaurantCardComponent } from './components/restaurant-results/restaur
     MatCardModule,
     HttpClientModule,
     AppRoutingModule,
-    LeafletModule
+    LeafletModule,
+    MatProgressSpinnerModule
   ],
   declarations: [AppComponent, RestaurantMapComponent, HomeComponent, SearchComponent, PageNotFoundComponent, RestaurantResultsComponent, RestaurantCardComponent],
   bootstrap: [AppComponent],
