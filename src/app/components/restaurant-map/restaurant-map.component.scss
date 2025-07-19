@@ -12,6 +12,37 @@
   margin-top: 0.5em;
 }
 
+.leaflet-popup-content-wrapper {
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+::ng-deep .leaflet-popup-content-wrapper .star {
+  font-size: 16px;
+  margin-right: 2px;
+  color: #d3d3d3;
+}
+
+::ng-deep .leaflet-popup-content-wrapper .star.filled {
+  color: #ffd700;
+}
+
+::ng-deep .leaflet-popup-content-wrapper .star:not(.filled) {
+  color: #d3d3d3;
+}
+
+::ng-deep .leaflet-popup-content-wrapper h3 {
+  margin-bottom: 0px !important;
+}
+
+::ng-deep .leaflet-popup-content-wrapper p {
+  margin-bottom: 6px !important;
+}
+
+::ng-deep .leaflet-popup-content-wrapper img {
+  width: 80px;
+}
+
 @media (max-width: 600px) {
   .map-container {
     height: 250px;

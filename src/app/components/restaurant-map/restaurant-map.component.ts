@@ -8,6 +8,7 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
+import * as L from 'leaflet';
 
 import {
   Map,
@@ -85,16 +86,6 @@ export class RestaurantMapComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-  private updateMapWithSelectedRestaurant() {
-    if (this.selectedRestaurant && this.map) {
-      const { latitude, longitude } = this.selectedRestaurant;
-      const latNum = Number(latitude);
-      const lngNum = Number(longitude);
-
-      this.map.panTo(new LatLng(latNum, lngNum));
-      this.addMarker(latNum, lngNum, { icon: this.markerIconRed });
-    }
-  }
 
   ngOnDestroy() {
     if (this.map) {
@@ -120,10 +111,54 @@ export class RestaurantMapComponent implements OnInit, OnChanges, OnDestroy {
     this.zoom$.emit(this.zoom);
   }
 
+  private updateMapWithSelectedRestaurant() {
+    if (this.selectedRestaurant && this.map) {
+      const { latitude, longitude, photo, name, rating } = this.selectedRestaurant;
+      const latNum = Number(latitude);
+      const lngNum = Number(longitude);
+      const imgUrl = photo.images.small.url
+      // move to coordinates location
+      this.map.panTo(new LatLng(latNum, lngNum));
+
+      // Add marker on map
+      this.addMarker(latNum, lngNum, { icon: this.markerIconRed });
+
+      const popupContent = this.createPopupContent(name, rating, imgUrl);
+
+      const popup = L.popup()
+        .setContent(popupContent)
+        .setLatLng([latNum, lngNum]);
+
+      // Attach the popup to the marker
+      this.map.openPopup(popup);
+    }
+  }
+
+  private createPopupContent(name: string, rating: string, imgUrl: string) {
+    return `
+    <h3>${name}</h3>
+    <p>${this.createStars(rating)}</p>
+    <img src="${imgUrl}" alt='${name}'>
+  `;
+  }
+  private createStars(rating: string) {
+    const totalStars = 5;
+    const filledStars = Math.round(Number(rating));
+    let stars = '';
+
+    for (let i = 0; i < totalStars; i++) {
+      stars += `<span class="star ${i < filledStars ? 'filled' : ''}">&#9733;</span>`;
+    }
+
+    return stars;
+  }
+
   addMarker(lat: number, lng: number, markerIcon: MarkerOptions) {
     if (!this.map) {
       return;
     }
+
+    // Création du marker
     const newMarker = marker([lat, lng], markerIcon)
       .on('click', (e) => {
         this.showActions = false;
@@ -132,10 +167,13 @@ export class RestaurantMapComponent implements OnInit, OnChanges, OnDestroy {
         if (!this.map) {
           return;
         }
-      })
-      .on('mouseover', (e) => { });
+      });
+
+    // Ajout du marker à la carte
     this.markers.push(newMarker);
     newMarker.addTo(this.map);
+
+    // Move the map to the marker
     this.map.panTo(new LatLng(lat, lng));
   }
 
